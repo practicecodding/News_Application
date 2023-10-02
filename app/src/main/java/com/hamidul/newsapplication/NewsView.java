@@ -50,7 +50,6 @@ public class NewsView extends AppCompatActivity {
             public void onClick(View v) {
                 String text = tvDes.getText().toString();
                 textToSpeech.speak(text,TextToSpeech.QUEUE_FLUSH,null,null);
-                toastMessage("Start Voice");
             }
         });
 
