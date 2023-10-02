@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -21,6 +22,7 @@ public class NewsView extends AppCompatActivity {
     TextView tvTitle,tvDes;
     FloatingActionButton fab;
     TextToSpeech textToSpeech;
+    Toast toast;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,11 +50,17 @@ public class NewsView extends AppCompatActivity {
             public void onClick(View v) {
                 String text = tvDes.getText().toString();
                 textToSpeech.speak(text,TextToSpeech.QUEUE_FLUSH,null,null);
+                toastMessage("Start Voice");
             }
         });
 
     }
 
+    private void toastMessage (String text){
+        if (toast!=null) toast.cancel();
+        toast = Toast.makeText(getApplicationContext(),text,Toast.LENGTH_SHORT);
+        toast.show();
+    }
 
     @Override
     protected void onDestroy() {
