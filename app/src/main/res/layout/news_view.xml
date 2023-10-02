@@ -59,6 +59,7 @@
                 android:lineSpacingExtra="8dp"
                 android:textColor="#BF000000"
                 android:textSize="15sp"
+                android:layout_marginBottom="20dp"
                 />
 
         </LinearLayout>
