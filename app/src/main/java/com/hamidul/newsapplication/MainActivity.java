@@ -169,29 +169,7 @@ public class MainActivity extends AppCompatActivity {
                 "\n" +
                 "Asked about the possibility of partnering with the AL, Misbahur said it would depend on the emerging political scenario.\n\n\nAt the moment, 44 political parties, 14 of them Islamist parties, are registered with the Election Commission, a mandatory condition for contesting in any election. \n" +
                 "\n" +
-                "The participation of some of these Islamist parties in the election will help the ruling party to portray the polls as participatory in the absence of opposition BNP and other major Islamist parties, insiders say.\n" +
-                "\n" +
-                "Also, their participation will likely ensure higher voter turnout, another sign of a participatory election, they add.\n" +
-                "\n" +
-                "However,if BNP finally decides to contest the polls at the eleventhhour, these Islamist parties may join the electoral alliance led by the ruling AL, which is trying to forge a bigger electoral alliance with Islamist parties that have quite an impressive vote bank, according to the sources.\n" +
-                "\n" +
-                "But the AL may not keep the Islamists parties under its fold directly as the partners of the 14-party alliance, also AL led. A number of partners in the alliance think that the ruling party's move to woo Islamist parties is a deviation from the principles behind the formation of the 14-party alliance.\n" +
-                "\n" +
-                "Democratic values and secularism were the core ideals when the 14-party alliance was formed during the BNP-Jamaat rule in 2005.\n" +
-                "\n" +
-                "On the other hand, AL ally Bangladesh Tariqat Federation, led bySyed Nazibul Bashar Maizbhandari, is frustrated with the AL's soft stance on Bangladesh Supreme Party. Tariqat Federation thinks that some Chattogram-based top AL leaders are patronising Supreme Party, also based in Chattogram, for establishing dominance in local politics.\n" +
-                "\n" +
-                "Sources say if the AL forged an electoral alliance with Supreme Party, Tariqat Federation may even boycott the election or contest unilaterally.\n" +
-                "\n" +
-                "Contacted, 14-party Coordinator Amir Hossain Amu said Islamist parties that have already expressed their willingness to join the 14-party combine can form a separate alliance and it might be included in the AL-led grand alliance.\n" +
-                "\n" +
-                "He, however, said no Islamist party will be included in the 14-party alliance.\n" +
-                "\n" +
-                "Meanwhile, some Islamist parties and Hefajat-e Islam, the Qawmi madrasa-based non-political organisation, are planning to put pressure on the government to realise their demands, including withdrawing the cases against its leaders and release of its top leaders before the election.\n" +
-                "\n" +
-                "Islami Andolon Bangladesh already announced a two-day programme for October 7 and 15 and will accelerate its movement to realise its demand to form an election-time all-party government and hold election under that administration. Hefajat-e Islam \"will do whatever it takes\" to realise its demand.\n" +
-                "\n" +
-                "\"We will continue our all-out movement to realise our demand to have our top leaders released and the cases against them withdrawn,\" Azizul Hoque Islamabadi, joint secretary of Hefajat, told The Daily Star.");
+                "The participation of some of these Islamist parties in the election will help the ruling party to portray the polls as participatory in the absence of opposition BNP and other major Islamist parties, insiders say.");
         arrayList.add(hashMap);
 
         hashMap = new HashMap<>();
