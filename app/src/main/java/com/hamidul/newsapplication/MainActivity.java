@@ -1,6 +1,7 @@
 package com.hamidul.newsapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,9 +18,21 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
 import com.squareup.picasso.Picasso;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
     GridView gridView;
     HashMap <String, String> hashMap;
     ArrayList < HashMap <String, String> > arrayList = new ArrayList<>();
+    ProgressBar progressBar;
+    SwipeRefreshLayout swipeRefreshLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,11 +52,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         gridView = findViewById(R.id.gridView);
+        swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
+        progressBar = findViewById(R.id.progressBar);
 
-        newsDetails();
+        updateNews();
 
-        MyAdapter myAdapter = new MyAdapter();
-        gridView.setAdapter(myAdapter);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                updateNews();
+            }
+        });
 
     }//onCreate=====================================================================================
 
@@ -91,6 +112,8 @@ public class MainActivity extends AppCompatActivity {
             itemCat.setText(cat);
             itemTitle.setText(title);
             itemDes.setText(des);
+
+            Bitmap bitmap = ((BitmapDrawable) itemImage.getDrawable()).getBitmap();
 
             layItem.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -222,6 +245,58 @@ public class MainActivity extends AppCompatActivity {
                 "\n" +
                 "For the World Invention Competition and Exhibition 2023, Team Atlas participated with their own-made firefighting robot called Defender. As per Team Atlas, the Defender robot is built with advanced remote control technology, and it is capable of controlling the spread of fire by going directly into the source. It is equipped with various sensors, image processing technology, and real-time navigation tools that help it make necessary decisions automatically. The autonomous robot is also equipped with a first-aid box to help anyone injured by fire.\n\n\nTeam Atlas adds that a robot like Defender will help control fire-related incidents that have recently become quite common in Bangladesh. Since Defender can directly tackle the source of the fire, it reduces the risk for human firefighters and can help mitigate injuries and casualties caused by fire-related incidents.");
         arrayList.add(hashMap);
+
+    }
+
+    private void updateNews (){
+
+        RequestQueue requestQueue = Volley.newRequestQueue(MainActivity.this);
+
+        String url = "https://smhamidulcodding.000webhostapp.com/NewsUpdate/news.json";
+
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                progressBar.setVisibility(View.GONE);
+                swipeRefreshLayout.setRefreshing(false);
+
+                arrayList = new ArrayList<>();
+
+                for (int x=0; x<response.length(); x++){
+                    try {
+                        JSONObject jsonObject = response.getJSONObject(x);
+
+                        String cat = jsonObject.getString("cat");
+                        String title = jsonObject.getString("title");
+                        String imageUrl = jsonObject.getString("imageUrl");
+                        String des = jsonObject.getString("des");
+
+                        hashMap = new HashMap<>();
+                        hashMap.put("cat",cat);
+                        hashMap.put("imageUrl",imageUrl);
+                        hashMap.put("title",title);
+                        hashMap.put("des",des);
+                        arrayList.add(hashMap);
+
+                    } catch (JSONException e) {
+                        throw new RuntimeException(e);
+                    }
+                }// for loop end
+
+                MyAdapter myAdapter = new MyAdapter();
+                gridView.setAdapter(myAdapter);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                progressBar.setVisibility(View.GONE);
+                swipeRefreshLayout.setRefreshing(false);
+                Toast.makeText(MainActivity.this, "Something Went Wrong", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        requestQueue.add(jsonArrayRequest);
+
 
     }
 

@@ -4,12 +4,12 @@ plugins {
 
 android {
     namespace = "com.hamidul.newsapplication"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.hamidul.newsapplication"
         minSdk = 21
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -41,4 +41,6 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
     implementation ("com.squareup.picasso:picasso:2.8")
+    implementation ("com.android.volley:volley:1.2.1")
+    implementation ("androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01")
 }
